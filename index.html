@@ -3,16 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Popup Alert</title>
+  <title>Popup Hack Demo</title>
+  <script>
+    function openNewPage() {
+      // Open a new window with content dynamically created
+      const newWindow = window.open("", "_blank");
+      if (newWindow) {
+        newWindow.document.write(`
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>New Page</title>
+            <script>
+              window.onload = function() {
+                // First popup
+                alert("Welcome to the new page!");
+                // Second popup
+                alert("YOU'RE HACKED");
+              };
+            </script>
+          </head>
+          <body>
+            <h1>Welcome to the New Page</h1>
+            <p>This is the dynamically created page.</p>
+          </body>
+          </html>
+        `);
+        newWindow.document.close();
+      } else {
+        alert("Popup blocked! Please allow popups for this site.");
+      }
+    }
+  </script>
 </head>
 <body>
   <h1>Click the Link Below</h1>
-  <a href="#" onclick="showPopup()">Click me!</a>
-
-  <script>
-    function showPopup() {
-      alert("YOU'RE HACKED");
-    }
-  </script>
+  <!-- This link triggers the JavaScript function -->
+  <a href="#" onclick="openNewPage()">Click me!</a>
 </body>
 </html>
+
